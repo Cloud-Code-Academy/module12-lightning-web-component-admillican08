@@ -26,15 +26,6 @@ export default class PlatformDevCertCalc extends LightningElement {
         }
     }
 
-       addAttemptHistory(score){
-        let attemptNum = Number(this.keyVals.slice(-1)) + 1;
-        this.keyVals.push(attemptNum);
-        const attempt = {
-                            Id:attemptNum, Score:score
-                        }
-        this.attemptHistory = [...this.attemptHistory, attempt];
-    }
-
     calculateScore(){
         this.certificationScore = (this.devFundamentalScore * 0.23) + 
         (this.procAutomationScore * 0.30) + (this.userInterfaceScore * 0.25) 
@@ -74,6 +65,21 @@ export default class PlatformDevCertCalc extends LightningElement {
             this.showResources = false;
         }
         this.showGoodJob = !this.showResources;
+    }
+
+        addAttemptHistory(score){
+        let attemptNum = Number(this.keyVals.slice(-1)) + 1;
+        this.keyVals.push(attemptNum);
+        const attempt = {
+                            Id:attemptNum, Score:score
+                        }
+        this.attemptHistory = [...this.attemptHistory, attempt];
+    }
+
+    deleteAttemptHandler(event){
+        let attemptNum = event.detail;
+        this.attemptHistory = this.attemptHistory.filter(attempt => attempt.Id != attemptNum );
+        console.log('New attempt history: ' + this.attmeptHistory);
     }
 
   
