@@ -5,6 +5,7 @@ export default class PlatformDevCertCalc extends LightningElement {
     procAutomationScore = 50;
     userInterfaceScore = 50;
     testDebugDeployScore = 50;
+    numberOfQuestions = 60;
 
     certificationScore = 50;
 
@@ -31,10 +32,7 @@ export default class PlatformDevCertCalc extends LightningElement {
         const attempt = {
                             Id:attemptNum, Score:score
                         }
-        console.log('**Attempt Id: ' + attemptNum);
         this.attemptHistory = [...this.attemptHistory, attempt];
-         console.log('**Attempt Id after added to attemptHistory array: ' + attemptNum);
-         console.log('**attemptHistory array: ' + this.attemptHistory);
     }
 
     calculateScore(){
