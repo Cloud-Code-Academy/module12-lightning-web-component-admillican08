@@ -11,7 +11,6 @@ export default class PlatformDevCertCalc extends LightningElement {
 
     showResources = false;
     showGoodJob = false;
-    keyVals = [1,2,3,4];
  
     generateRandom(){
         return Math.floor(Math.random() * 100);
@@ -19,9 +18,11 @@ export default class PlatformDevCertCalc extends LightningElement {
  
     @track attemptHistory = [];
 
+    startingVals = [1,2,3,4];
     connectedCallback(){
-        for(let i=0; i<this.keyVals.length; i++){
-            const dummyAttempt = {Id: this.keyVals[i], Score: this.generateRandom()}
+        let dummyAttempt = {};
+        for(let i=0; i<this.startingVals.length; i++){
+            dummyAttempt = {Id: this.startingVals[i], Score: this.generateRandom()}
             this.attemptHistory.push(dummyAttempt);
         }
     }
@@ -68,8 +69,7 @@ export default class PlatformDevCertCalc extends LightningElement {
     }
 
         addAttemptHistory(score){
-        let attemptNum = Number(this.keyVals.slice(-1)) + 1;
-        this.keyVals.push(attemptNum);
+        let attemptNum = (this.attemptHistory.length + 1);
         const attempt = {
                             Id:attemptNum, Score:score
                         }
